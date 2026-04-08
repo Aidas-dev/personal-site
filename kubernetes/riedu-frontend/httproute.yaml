@@ -1,0 +1,45 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: riedu-frontend
+  namespace: riedu-eshop
+  labels:
+    app: riedu-frontend
+    component: frontend
+spec:
+  parentRefs:
+    - name: cilium-gateway-oracle
+      namespace: cilium-gateway
+  hostnames:
+    - "riedu.kubexa.tech"
+  rules:
+    # Backend API calls from frontend (SSR or client-side)
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/store
+      backendRefs:
+        - name: medusa-backend
+          port: 9000
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/products
+      backendRefs:
+        - name: medusa-backend
+          port: 9000
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/auth
+      backendRefs:
+        - name: medusa-backend
+          port: 9000
+    # Frontend serves everything else
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: riedu-frontend
+          port: 3000

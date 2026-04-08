@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: riedu-frontend
+  namespace: riedu-eshop
+  labels:
+    app: riedu-frontend
+    component: frontend
+spec:
+  selector:
+    app: riedu-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http
+  type: ClusterIP

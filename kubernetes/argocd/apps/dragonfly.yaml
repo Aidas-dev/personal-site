@@ -1,0 +1,30 @@
+# DragonflyDB (Redis-compatible cache)
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dragonfly
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: riedu-eshop
+    app.kubernetes.io/component: cache
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/Aidas-dev/riedu-eshop.git
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/dragonflydb/dragonfly.git
+      targetRevision: main
+      chart: helm
+      helm:
+        valueFiles:
+          - $values/kubernetes/dragonfly/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: riedu-eshop
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=true

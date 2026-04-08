@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medusa-backend
+  namespace: riedu-eshop
+  labels:
+    app: medusa-backend
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medusa-backend
+  template:
+    metadata:
+      labels:
+        app: medusa-backend
+        component: backend
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: location
+                    operator: In
+                    values:
+                      - oracle-cloud
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: medusa-backend
+          image: ghcr.io/aidas-dev/riedu-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+              name: http
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: medusa-secrets
+                  key: database-url
+            - name: REDIS_URL
+              value: "redis://dragonfly.redis.svc.cluster.local:6379"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: medusa-secrets
+                  key: jwt-secret
+            - name: COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: medusa-secrets
+                  key: cookie-secret
+            - name: STORE_CORS
+              value: "http://localhost:3000,https://riedu.kubexa.tech"
+            - name: ADMIN_CORS
+              value: "http://localhost:7001,https://admin.riedu.kubexa.tech"
+            - name: AUTH_CORS
+              value: "http://localhost:7001,https://admin.riedu.kubexa.tech"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 5

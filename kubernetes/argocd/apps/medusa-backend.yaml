@@ -1,0 +1,29 @@
+# Medusa Backend
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: medusa-backend
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: riedu-eshop
+    app.kubernetes.io/component: backend
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Aidas-dev/riedu-eshop.git
+    targetRevision: main
+    path: kubernetes/medusa-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: riedu-eshop
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=true
+  ignoreDifferences:
+    - kind: Secret
+      name: medusa-secrets
+      jsonPointers:
+        - /stringData

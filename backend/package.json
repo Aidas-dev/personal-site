@@ -1,0 +1,39 @@
+{
+  "name": "riedu-eshop-backend",
+  "version": "1.0.0",
+  "description": "Medusa v2 backend for Riedu E-Shop",
+  "author": "Riedu E-Shop Team",
+  "license": "MIT",
+  "scripts": {
+    "build": "medusa build",
+    "start": "medusa start",
+    "dev": "medusa develop",
+    "predeploy": "medusa db:migrate",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "latest",
+    "@medusajs/framework": "latest",
+    "@medusajs/medusa": "latest",
+    "ajv": "^8.18.0",
+    "ajv-draft-04": "^1.0.0",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@medusajs/cli": "2.13.5",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.6.1",
+    "eslint": "^8.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.6.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
