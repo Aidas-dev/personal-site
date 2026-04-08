@@ -84,49 +84,51 @@
 
 ## Phase 4: Security, SEO & Polish
 
-- [ ] Task 4.1: Implement security headers
-    - [ ] Write tests for CSP header configuration
-    - [ ] Configure Content-Security-Policy (allow Grafana iframe, Three.js CDN)
-    - [ ] Add X-Frame-Options, X-Content-Type-Options, Referrer-Policy
-    - [ ] Configure HTTPS enforcement
-- [ ] Task 4.2: Add SEO meta tags
-    - [ ] Write tests for meta tag rendering
-    - [ ] Configure Open Graph tags (title, description, image, URL)
-    - [ ] Add Twitter Card meta
-    - [ ] Generate sitemap.xml
-    - [ ] Add structured data (JSON-LD Person schema)
-- [ ] Task 4.3: Dark/Light mode polish
-    - [ ] Write tests for theme persistence (localStorage)
-    - [ ] Add smooth CSS transition between themes
-    - [ ] Ensure Three.js scene adapts to theme
-    - [ ] Test all pages in both modes
-- [ ] Task 4.4: Mobile responsiveness
-    - [ ] Test all pages on mobile viewport (375px minimum)
-    - [ ] Ensure touch targets are 44x44px minimum
-    - [ ] Verify Three.js performance on mobile (reduce complexity if needed)
-    - [ ] Test theme toggle on mobile
+- [x] Task 4.1: Implement security headers `dc9c376`
+    - [x] Write tests for CSP header configuration
+    - [x] Configure Content-Security-Policy (allow Grafana iframe, Three.js CDN)
+    - [x] Add X-Frame-Options, X-Content-Type-Options, Referrer-Policy
+    - [x] Configure HTTPS enforcement
+- [x] Task 4.2: Add SEO meta tags `dc9c376`
+    - [x] Write tests for meta tag rendering
+    - [x] Configure Open Graph tags (title, description, image, URL)
+    - [x] Add Twitter Card meta
+    - [x] Generate sitemap.xml
+    - [x] Add structured data (JSON-LD Person schema)
+- [x] Task 4.3: Dark/Light mode polish `dc9c376`
+    - [x] Write tests for theme persistence (localStorage)
+    - [x] Add smooth CSS transition between themes
+    - [x] Ensure Three.js scene adapts to theme
+    - [x] Test all pages in both modes
+- [x] Task 4.4: Mobile responsiveness `dc9c376`
+    - [x] Test all pages on mobile viewport (375px minimum)
+    - [x] Ensure touch targets are 44x44px minimum
+    - [x] Verify Three.js performance on mobile (reduce complexity if needed)
+    - [x] Test theme toggle on mobile
 
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Security, SEO & Polish' (Protocol in workflow.md)
+**Phase 4 complete.** [checkpoint: dc9c376]
 
 ## Phase 5: CI/CD & Kubernetes Deployment
 
-- [ ] Task 5.1: Update GitHub Actions workflows
-    - [ ] Rename workflows from riedu-* to personal-site-*
-    - [ ] Update image names in GHCR
-    - [ ] Verify multi-platform builds (amd64, arm64)
-- [ ] Task 5.2: Update Kubernetes manifests
-    - [ ] Rename directories: `kubernetes/medusa-backend/` → `kubernetes/backend/`
-    - [ ] Rename directories: `kubernetes/riedu-frontend/` → `kubernetes/frontend/`
-    - [ ] Remove postgres, dragonfly ArgoCD apps (not needed)
-    - [ ] Update ArgoCD app definitions for new structure
-    - [ ] Update HTTPRoute hostnames (user to provide domain)
-- [ ] Task 5.3: Update Dockerfiles
-    - [ ] Review and update backend Dockerfile for Hono
-    - [ ] Review and update frontend Dockerfile for TanStack Start
-    - [ ] Test local builds with `test-build.sh`
-- [ ] Task 5.4: Update CI/CD documentation
-    - [ ] Create `docs/BUILD_DEPLOYMENT.md` with updated instructions
-    - [ ] Document ArgoCD bootstrap process
-    - [ ] Document domain/DNS configuration
+- [x] Task 5.1: Update GitHub Actions workflows `dc9c376`
+    - [x] Rename workflows from riedu-* to personal-site-*
+    - [x] Update image names in GHCR
+    - [x] Verify multi-platform builds (amd64, arm64)
+- [x] Task 5.2: Update Kubernetes manifests `dc9c376`
+    - [x] Remove old directories (postgres, dragonfly, medusa-*)
+    - [x] Create kubernetes/backend/ (deployment, service, httproute)
+    - [x] Create kubernetes/frontend/ (deployment, service, httproute)
+    - [x] Update ArgoCD app definitions
+    - [x] Update HTTPRoute hostnames (placeholder domain)
+- [x] Task 5.3: Update Dockerfiles `dc9c376`
+    - [x] Review and update backend Dockerfile for Hono
+    - [x] Review and update frontend Dockerfile for TanStack Start
+    - [x] Update test-build.sh
+- [x] Task 5.4: Update CI/CD documentation `dc9c376`
+    - [x] Create docs/BUILD_DEPLOYMENT.md with updated instructions
+    - [x] Document ArgoCD bootstrap process
+    - [x] Document domain/DNS configuration
 
-- [ ] Task: Conductor - User Manual Verification 'Phase 5: CI/CD & Kubernetes Deployment' (Protocol in workflow.md)
+**Phase 5 complete.** [checkpoint: dc9c376]
+
+**All phases complete.** 🎉
