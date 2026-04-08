@@ -34,24 +34,26 @@
 
 ## Phase 2: Three.js Hero Scene & Core UI
 
-- [~] Task 2.1: Implement JetBrains-style 3D hero scene
-    - [ ] Write tests for Three.js canvas component (mounts, renders, respects reduced motion)
-    - [ ] Create `components/three/HeroScene.tsx` with @react-three/fiber
-    - [ ] Implement clean geometric shapes: floating hexagons, subtle grid
-    - [ ] Add smooth, minimal animations (rotation, floating motion)
-    - [ ] Lazy-load after first paint
-    - [ ] Respect `prefers-reduced-motion`
-- [ ] Task 2.2: Build layout components
-    - [ ] Write tests for Header, Footer, Navigation components
-    - [ ] Create `components/layout/Header.tsx` — name, nav links, theme toggle
-    - [ ] Create `components/layout/Footer.tsx` — GitHub link, open-source badge
-    - [ ] Create `components/layout/Navigation.tsx` — route-aware active states
-- [ ] Task 2.3: Build hero landing page
-    - [ ] Write tests for Hero section content and structure
-    - [ ] Create hero text content: name, title, brief intro
-    - [ ] Integrate Three.js scene as background/hero element
-    - [ ] Add CTA buttons: "View Projects", "Download Resume"
-    - [ ] Ensure zero-JS fallback renders core content
+- [x] Task 2.1: Implement JetBrains-style 3D hero scene `adae4bf`
+    - [x] Write tests for Three.js canvas component (mounts, renders, respects reduced motion)
+    - [x] Create `components/three/HeroScene.tsx` with @react-three/fiber
+    - [x] Implement clean geometric shapes: floating hexagons, subtle grid
+    - [x] Add smooth, minimal animations (rotation, floating motion)
+    - [x] Lazy-load after first paint
+    - [x] Respect `prefers-reduced-motion`
+- [x] Task 2.2: Build layout components `adae4bf`
+    - [x] Write tests for Header, Footer, Navigation components
+    - [x] Create `components/layout/Header.tsx` — name, nav links, theme toggle
+    - [x] Create `components/layout/Footer.tsx` — GitHub link, open-source badge
+    - [x] Create `components/layout/Navigation.tsx` — route-aware active states
+- [x] Task 2.3: Build hero landing page `adae4bf`
+    - [x] Write tests for Hero section content and structure
+    - [x] Create hero text content: name, title, brief intro
+    - [x] Integrate Three.js scene as background/hero element
+    - [x] Add CTA buttons: "View Projects", "Download Resume"
+    - [x] Ensure zero-JS fallback renders core content
+
+**Phase 2 complete.** [checkpoint: 3bac161]
 
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Three.js Hero Scene & Core UI' (Protocol in workflow.md)
 
