@@ -22,11 +22,13 @@
     - [x] Create hexagon utility classes and decorative components
     - [x] Set up dark mode via CSS custom properties + Tailwind `dark:` variant
     - [x] Test theme toggle with system preference detection
-- [~] Task 1.4: Set up lightweight Hono backend API
-    - [ ] Create `backend/` directory structure with Hono
-    - [ ] Configure TypeScript, Dockerfile for Hono server
-    - [ ] Create stub `/api/metrics` endpoint for future VMetrics proxy
-    - [ ] Write tests for API endpoint responses
+- [x] Task 1.4: Set up lightweight Hono backend API `a2fa24d`
+    - [x] Create `backend/` directory structure with Hono
+    - [x] Configure TypeScript, Dockerfile for Hono server
+    - [x] Create stub `/api/metrics` endpoint for future VMetrics proxy
+    - [x] Write tests for API endpoint responses
+
+**Phase 1 complete.** [checkpoint: 5f03c2b]
 
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffold & Foundation Setup' (Protocol in workflow.md)
 
