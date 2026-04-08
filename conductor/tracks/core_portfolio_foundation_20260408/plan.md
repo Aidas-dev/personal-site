@@ -8,21 +8,21 @@
 
 ## Phase 1: Project Scaffold & Foundation Setup
 
-- [ ] Task 1.1: Clean up existing frontend project — remove Medusa-specific code, unused components, and e-commerce dependencies
-    - [ ] Write tests for cleanup verification (package.json dependency check)
-    - [ ] Remove Medusa client, e-commerce routes, cart/order contexts
-    - [ ] Update package.json: name, description, remove unused deps
-    - [ ] Run build to confirm no broken imports
-- [ ] Task 1.2: Set up project structure for portfolio site
-    - [ ] Create route files: `/`, `/about`, `/projects`, `/dashboard`, `/security`
-    - [ ] Create component directories: `components/hero/`, `components/layout/`, `components/ui/`, `components/three/`
-    - [ ] Set up root layout with navigation, footer, and theme toggle shell
-- [ ] Task 1.3: Configure Tailwind CSS with hexagon theme
-    - [ ] Define custom color palette (`#0a5c36` primary, dark/light mode tokens)
-    - [ ] Create hexagon utility classes and decorative components
-    - [ ] Set up dark mode via CSS custom properties + Tailwind `dark:` variant
-    - [ ] Test theme toggle with system preference detection
-- [ ] Task 1.4: Set up lightweight Hono backend API
+- [x] Task 1.1: Clean up existing frontend project — remove Medusa-specific code, unused components, and e-commerce dependencies `dbd55aa`
+    - [x] Write tests for cleanup verification (package.json dependency check)
+    - [x] Remove Medusa client, e-commerce routes, cart/order contexts
+    - [x] Update package.json: name, description, remove unused deps
+    - [x] Run build to confirm no broken imports
+- [x] Task 1.2: Set up project structure for portfolio site `dbd55aa`
+    - [x] Create route files: `/`, `/about`, `/projects`, `/dashboard`, `/security`
+    - [x] Create component directories: `components/hero/`, `components/layout/`, `components/ui/`, `components/three/`
+    - [x] Set up root layout with navigation, footer, and theme toggle shell
+- [x] Task 1.3: Configure Tailwind CSS with hexagon theme `dbd55aa`
+    - [x] Define custom color palette (`#0a5c36` primary, dark/light mode tokens)
+    - [x] Create hexagon utility classes and decorative components
+    - [x] Set up dark mode via CSS custom properties + Tailwind `dark:` variant
+    - [x] Test theme toggle with system preference detection
+- [~] Task 1.4: Set up lightweight Hono backend API
     - [ ] Create `backend/` directory structure with Hono
     - [ ] Configure TypeScript, Dockerfile for Hono server
     - [ ] Create stub `/api/metrics` endpoint for future VMetrics proxy

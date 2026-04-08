@@ -1,39 +1,32 @@
 {
-  "name": "riedu-eshop-backend",
+  "name": "portfolio-backend",
   "version": "1.0.0",
-  "description": "Medusa v2 backend for Riedu E-Shop",
-  "author": "Riedu E-Shop Team",
+  "description": "Lightweight Hono API server for personal portfolio site — proxies VMetrics metrics and serves Grafana embed tokens",
+  "author": "Aidas Kriščiūnas",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "build": "medusa build",
-    "start": "medusa start",
-    "dev": "medusa develop",
-    "predeploy": "medusa db:migrate",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint . --ext .ts,.tsx",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@medusajs/admin-sdk": "latest",
-    "@medusajs/framework": "latest",
-    "@medusajs/medusa": "latest",
-    "ajv": "^8.18.0",
-    "ajv-draft-04": "^1.0.0",
-    "pg": "^8.11.0"
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0"
   },
   "devDependencies": {
-    "@medusajs/cli": "2.13.5",
-    "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitest/coverage-v8": "^1.6.1",
-    "eslint": "^8.0.0",
-    "ts-node": "^10.9.0",
-    "typescript": "^5.0.0",
-    "vitest": "^1.6.1"
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   }
 }
