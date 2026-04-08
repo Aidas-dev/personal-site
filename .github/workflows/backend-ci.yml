@@ -37,16 +37,33 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: cd backend && pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: cd backend && pnpm run type-check
+
+      - name: Run tests
+        run: cd backend && CI=true pnpm run test
+
       - name: Calculate semantic version
         id: version
         run: |
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
-            # Use tag version directly
             VERSION=${GITHUB_REF#refs/tags/backend-v}
             echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "tag=$GITHUB_REF" >> $GITHUB_OUTPUT
           else
-            # Calculate next version based on bump type
             LATEST_TAG=$(git tag -l 'backend-v*' --sort=-v:refname | head -n1)
             if [[ -z "$LATEST_TAG" ]]; then
               MAJOR=1

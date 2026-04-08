@@ -38,16 +38,33 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: cd frontend && pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: cd frontend && pnpm run type-check
+
+      - name: Run tests
+        run: cd frontend && CI=true pnpm run test
+
       - name: Calculate semantic version
         id: version
         run: |
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
-            # Use tag version directly
             VERSION=${GITHUB_REF#refs/tags/frontend-v}
             echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "tag=$GITHUB_REF" >> $GITHUB_OUTPUT
           else
-            # Calculate next version based on bump type
             LATEST_TAG=$(git tag -l 'frontend-v*' --sort=-v:refname | head -n1)
             if [[ -z "$LATEST_TAG" ]]; then
               MAJOR=1
@@ -84,7 +101,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Cache pnpm dependencies
+      - name: Cache pnpm store
         uses: actions/cache@v4
         with:
           path: ~/.local/share/pnpm/store
