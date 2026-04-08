@@ -34,7 +34,7 @@
 
 ## Phase 2: Three.js Hero Scene & Core UI
 
-- [ ] Task 2.1: Implement JetBrains-style 3D hero scene
+- [~] Task 2.1: Implement JetBrains-style 3D hero scene
     - [ ] Write tests for Three.js canvas component (mounts, renders, respects reduced motion)
     - [ ] Create `components/three/HeroScene.tsx` with @react-three/fiber
     - [ ] Implement clean geometric shapes: floating hexagons, subtle grid
