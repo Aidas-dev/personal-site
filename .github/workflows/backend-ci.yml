@@ -41,20 +41,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
-          cache-dependency-path: backend/pnpm-lock.yaml
 
       - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@10 --activate
+        run: npm install -g pnpm@10
 
       - name: Install dependencies
-        run: cd backend && pnpm install --frozen-lockfile
+        working-directory: backend
+        run: pnpm install --frozen-lockfile
 
       - name: Type check
-        run: cd backend && pnpm run type-check
+        working-directory: backend
+        run: pnpm run type-check
 
       - name: Run tests
-        run: cd backend && CI=true pnpm run test
+        working-directory: backend
+        run: pnpm run test
 
       - name: Calculate semantic version
         id: version
