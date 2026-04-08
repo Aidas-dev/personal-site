@@ -1,9 +1,10 @@
 FROM node:24-alpine AS base
 WORKDIR /app
+RUN corepack enable && corepack prepare pnpm@10 --activate
 
 FROM base AS deps
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
