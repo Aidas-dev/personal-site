@@ -1,24 +1,20 @@
-# Medusa Admin Panel
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: medusa-admin
+  name: frontend
   namespace: argocd
-  labels:
-    app.kubernetes.io/part-of: riedu-eshop
-    app.kubernetes.io/component: admin
 spec:
   project: default
   source:
-    repoURL: https://github.com/Aidas-dev/riedu-eshop.git
+    repoURL: https://github.com/Aidas-dev/personal-site.git
     targetRevision: main
-    path: kubernetes/medusa-admin
+    path: kubernetes/frontend
   destination:
     server: https://kubernetes.default.svc
-    namespace: riedu-eshop
+    namespace: personal-site
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - PruneLast=true
+      - CreateNamespace=true

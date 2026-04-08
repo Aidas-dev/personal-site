@@ -22,7 +22,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/riedu-backend
+  IMAGE_NAME: ${{ github.repository_owner }}/personal-site-backend
 
 jobs:
   build-and-push:

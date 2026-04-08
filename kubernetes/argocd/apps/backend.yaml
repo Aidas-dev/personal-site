@@ -1,26 +1,20 @@
-# Personal Site Namespace
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: personal-site-namespace
+  name: backend
   namespace: argocd
-  labels:
-    app.kubernetes.io/part-of: personal-site
-    app.kubernetes.io/component: infrastructure
 spec:
   project: default
   source:
     repoURL: https://github.com/Aidas-dev/personal-site.git
     targetRevision: main
-    path: kubernetes
-    directory:
-      include: namespace.yaml
+    path: kubernetes/backend
   destination:
     server: https://kubernetes.default.svc
     namespace: personal-site
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true

@@ -1,34 +1,21 @@
-# Argo CD App of Apps - Riedu E-Shop
-# This parent application manages all child applications for the Riedu E-Shop platform.
-# Each child application is deployed independently by Argo CD.
+# Personal Site — App of Apps
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: riedu-eshop-apps
+  name: personal-site-apps
   namespace: argocd
   labels:
-    app.kubernetes.io/part-of: riedu-eshop
-    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/part-of: personal-site
 spec:
   project: default
   source:
-    repoURL: https://github.com/Aidas-dev/riedu-eshop.git
+    repoURL: https://github.com/Aidas-dev/personal-site.git
     targetRevision: main
     path: kubernetes/argocd/apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: riedu-eshop
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-      allowEmpty: true
-    syncOptions:
-      - CreateNamespace=true
-      - PruneLast=true
-    retry:
-      limit: 5
-      backoff:
-        duration: 5s
-        factor: 2
-        maxDuration: 3m
