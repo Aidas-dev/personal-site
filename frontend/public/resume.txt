@@ -1,0 +1,73 @@
+================================================================================
+                          AIDAS KRIŠČIŪNAS
+                          Developer Resume
+================================================================================
+
+CONTACT
+-------
+Email: aidas@example.com
+GitHub: github.com/user
+Portfolio: portfolio.example.com
+
+--------------------------------------------------------------------------------
+
+SUMMARY
+-------
+Developer specializing in open-source, self-hosted infrastructure, and
+transparent engineering. Experienced in building and maintaining Kubernetes
+clusters, CI/CD pipelines, and cloud-native applications.
+
+--------------------------------------------------------------------------------
+
+TECHNICAL SKILLS
+----------------
+Languages:      TypeScript, Go, Python, SQL
+Frontend:       React, TanStack Start, Tailwind CSS, Three.js
+Infrastructure: Kubernetes, Talos Linux, Docker, Terraform
+DevOps:         CI/CD, GitHub Actions, GitOps
+Monitoring:     Grafana, Prometheus, Alerting
+Networking:     Tailscale, DNS, Load Balancing
+
+--------------------------------------------------------------------------------
+
+EXPERIENCE
+----------
+
+Senior Developer — Open Source & Infrastructure (2023–Present)
+  • Built and maintain multi-node Kubernetes clusters on Talos Linux
+  • Developed CI/CD pipelines for automated testing and deployment
+  • Self-hosted infrastructure including Grafana, Gitea, and monitoring stacks
+  • Contributed to open-source projects in cloud-native ecosystem
+
+Developer — Personal Projects (2020–2023)
+  • Created portfolio website with TanStack Start and React 19
+  • Deployed home lab with Proxmox, Docker, and automated backups
+  • Built monitoring dashboards with Grafana and Prometheus
+
+--------------------------------------------------------------------------------
+
+EDUCATION
+---------
+Self-taught developer with focus on practical, hands-on infrastructure experience.
+Continuous learner through documentation, experimentation, and community.
+
+--------------------------------------------------------------------------------
+
+PROJECTS
+--------
+• personal-website — Portfolio site (TanStack Start, React, Tailwind CSS)
+• kubernetes-cluster — Multi-node Talos Linux K8s cluster (Terraform, Tailscale)
+• home-lab — Self-hosted infrastructure (Python, Docker, Terraform)
+• ci-cd-pipeline — Reusable GitHub Actions templates (Go, TypeScript)
+
+--------------------------------------------------------------------------------
+
+NOTES
+-----
+This is a placeholder resume. Full details with real dates, metrics, and
+references are available upon request.
+
+All projects mentioned are open-source and available on GitHub.
+
+================================================================================
+                    Last updated: April 2026
