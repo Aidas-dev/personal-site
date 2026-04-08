@@ -6,8 +6,6 @@ import {
   HeadContent,
   Scripts,
 } from '@tanstack/react-router';
-import { CartProvider } from '@/context/cartContext';
-import { Header } from '@/components/Header';
 import '../styles.css';
 
 export const Route = createRootRoute({
@@ -15,7 +13,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Riedu E-Shop - Bicycle Parts & Parking Solutions' },
+      { title: 'Portfolio' },
     ],
   }),
   component: RootComponent,
@@ -24,10 +22,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <CartProvider>
-        <Header />
-        <Outlet />
-      </CartProvider>
+      <Outlet />
     </RootDocument>
   );
 }

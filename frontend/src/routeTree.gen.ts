@@ -9,25 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CheckoutRouteImport } from './routes/checkout'
-import { Route as CartRouteImport } from './routes/cart'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProductsIndexRouteImport } from './routes/products/index'
-import { Route as ProductsIdRouteImport } from './routes/products/$id'
-import { Route as OrderConfirmationRouteImport } from './routes/order/confirmation'
-import { Route as CategoriesSlugRouteImport } from './routes/categories/$slug'
-import { Route as AccountOrdersRouteImport } from './routes/account/orders'
-import { Route as CheckoutPaymentCallbackRouteImport } from './routes/checkout/payment/callback'
-import { Route as AccountOrdersIdRouteImport } from './routes/account/orders/$id'
 
-const CheckoutRoute = CheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -35,143 +40,73 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsIndexRoute = ProductsIndexRouteImport.update({
-  id: '/products/',
-  path: '/products/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsIdRoute = ProductsIdRouteImport.update({
-  id: '/products/$id',
-  path: '/products/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrderConfirmationRoute = OrderConfirmationRouteImport.update({
-  id: '/order/confirmation',
-  path: '/order/confirmation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
-  id: '/categories/$slug',
-  path: '/categories/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AccountOrdersRoute = AccountOrdersRouteImport.update({
-  id: '/account/orders',
-  path: '/account/orders',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutPaymentCallbackRoute = CheckoutPaymentCallbackRouteImport.update({
-  id: '/payment/callback',
-  path: '/payment/callback',
-  getParentRoute: () => CheckoutRoute,
-} as any)
-const AccountOrdersIdRoute = AccountOrdersIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => AccountOrdersRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/checkout': typeof CheckoutRouteWithChildren
-  '/account/orders': typeof AccountOrdersRouteWithChildren
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/order/confirmation': typeof OrderConfirmationRoute
-  '/products/$id': typeof ProductsIdRoute
-  '/products/': typeof ProductsIndexRoute
-  '/account/orders/$id': typeof AccountOrdersIdRoute
-  '/checkout/payment/callback': typeof CheckoutPaymentCallbackRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/checkout': typeof CheckoutRouteWithChildren
-  '/account/orders': typeof AccountOrdersRouteWithChildren
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/order/confirmation': typeof OrderConfirmationRoute
-  '/products/$id': typeof ProductsIdRoute
-  '/products': typeof ProductsIndexRoute
-  '/account/orders/$id': typeof AccountOrdersIdRoute
-  '/checkout/payment/callback': typeof CheckoutPaymentCallbackRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cart': typeof CartRoute
-  '/checkout': typeof CheckoutRouteWithChildren
-  '/account/orders': typeof AccountOrdersRouteWithChildren
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/order/confirmation': typeof OrderConfirmationRoute
-  '/products/$id': typeof ProductsIdRoute
-  '/products/': typeof ProductsIndexRoute
-  '/account/orders/$id': typeof AccountOrdersIdRoute
-  '/checkout/payment/callback': typeof CheckoutPaymentCallbackRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/cart'
-    | '/checkout'
-    | '/account/orders'
-    | '/categories/$slug'
-    | '/order/confirmation'
-    | '/products/$id'
-    | '/products/'
-    | '/account/orders/$id'
-    | '/checkout/payment/callback'
+  fullPaths: '/' | '/about' | '/dashboard' | '/projects' | '/security'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/cart'
-    | '/checkout'
-    | '/account/orders'
-    | '/categories/$slug'
-    | '/order/confirmation'
-    | '/products/$id'
-    | '/products'
-    | '/account/orders/$id'
-    | '/checkout/payment/callback'
-  id:
-    | '__root__'
-    | '/'
-    | '/cart'
-    | '/checkout'
-    | '/account/orders'
-    | '/categories/$slug'
-    | '/order/confirmation'
-    | '/products/$id'
-    | '/products/'
-    | '/account/orders/$id'
-    | '/checkout/payment/callback'
+  to: '/' | '/about' | '/dashboard' | '/projects' | '/security'
+  id: '__root__' | '/' | '/about' | '/dashboard' | '/projects' | '/security'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CartRoute: typeof CartRoute
-  CheckoutRoute: typeof CheckoutRouteWithChildren
-  AccountOrdersRoute: typeof AccountOrdersRouteWithChildren
-  CategoriesSlugRoute: typeof CategoriesSlugRoute
-  OrderConfirmationRoute: typeof OrderConfirmationRoute
-  ProductsIdRoute: typeof ProductsIdRoute
-  ProductsIndexRoute: typeof ProductsIndexRoute
+  AboutRoute: typeof AboutRoute
+  DashboardRoute: typeof DashboardRoute
+  ProjectsRoute: typeof ProjectsRoute
+  SecurityRoute: typeof SecurityRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/checkout': {
-      id: '/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof CheckoutRouteImport
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -181,91 +116,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/': {
-      id: '/products/'
-      path: '/products'
-      fullPath: '/products/'
-      preLoaderRoute: typeof ProductsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/$id': {
-      id: '/products/$id'
-      path: '/products/$id'
-      fullPath: '/products/$id'
-      preLoaderRoute: typeof ProductsIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/order/confirmation': {
-      id: '/order/confirmation'
-      path: '/order/confirmation'
-      fullPath: '/order/confirmation'
-      preLoaderRoute: typeof OrderConfirmationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/categories/$slug': {
-      id: '/categories/$slug'
-      path: '/categories/$slug'
-      fullPath: '/categories/$slug'
-      preLoaderRoute: typeof CategoriesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/account/orders': {
-      id: '/account/orders'
-      path: '/account/orders'
-      fullPath: '/account/orders'
-      preLoaderRoute: typeof AccountOrdersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout/payment/callback': {
-      id: '/checkout/payment/callback'
-      path: '/payment/callback'
-      fullPath: '/checkout/payment/callback'
-      preLoaderRoute: typeof CheckoutPaymentCallbackRouteImport
-      parentRoute: typeof CheckoutRoute
-    }
-    '/account/orders/$id': {
-      id: '/account/orders/$id'
-      path: '/$id'
-      fullPath: '/account/orders/$id'
-      preLoaderRoute: typeof AccountOrdersIdRouteImport
-      parentRoute: typeof AccountOrdersRoute
-    }
   }
 }
 
-interface CheckoutRouteChildren {
-  CheckoutPaymentCallbackRoute: typeof CheckoutPaymentCallbackRoute
-}
-
-const CheckoutRouteChildren: CheckoutRouteChildren = {
-  CheckoutPaymentCallbackRoute: CheckoutPaymentCallbackRoute,
-}
-
-const CheckoutRouteWithChildren = CheckoutRoute._addFileChildren(
-  CheckoutRouteChildren,
-)
-
-interface AccountOrdersRouteChildren {
-  AccountOrdersIdRoute: typeof AccountOrdersIdRoute
-}
-
-const AccountOrdersRouteChildren: AccountOrdersRouteChildren = {
-  AccountOrdersIdRoute: AccountOrdersIdRoute,
-}
-
-const AccountOrdersRouteWithChildren = AccountOrdersRoute._addFileChildren(
-  AccountOrdersRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CartRoute: CartRoute,
-  CheckoutRoute: CheckoutRouteWithChildren,
-  AccountOrdersRoute: AccountOrdersRouteWithChildren,
-  CategoriesSlugRoute: CategoriesSlugRoute,
-  OrderConfirmationRoute: OrderConfirmationRoute,
-  ProductsIdRoute: ProductsIdRoute,
-  ProductsIndexRoute: ProductsIndexRoute,
+  AboutRoute: AboutRoute,
+  DashboardRoute: DashboardRoute,
+  ProjectsRoute: ProjectsRoute,
+  SecurityRoute: SecurityRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

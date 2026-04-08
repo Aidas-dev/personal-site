@@ -1,22 +1,27 @@
 @import "tailwindcss";
 
 /*
- * Riedu E-Shop Design Tokens
- * Dark green hexagon theme
+ * Portfolio Site Design Tokens
+ * Dark green hexagon theme (#0a5c36)
+ * Dark mode via 'class' strategy for manual toggle
  */
 
+/* Dark mode class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* Primary Colors - Dark Green Hexagon Theme */
-  --color-primary-50: #e8f5e9;
-  --color-primary-100: #c8e6c9;
-  --color-primary-200: #a5d6a7;
-  --color-primary-300: #81c784;
-  --color-primary-400: #66bb6a;
-  --color-primary-500: #2d5a3d;
-  --color-primary-600: #254a32;
-  --color-primary-700: #1d3a27;
-  --color-primary-800: #152a1c;
-  --color-primary-900: #0d1a11;
+  /* Primary Colors - Dark Green Hexagon Theme (#0a5c36) */
+  --color-primary-50: #e6f4ed;
+  --color-primary-100: #c3e3d3;
+  --color-primary-200: #9dd1b6;
+  --color-primary-300: #6fb894;
+  --color-primary-400: #4a9e75;
+  --color-primary-500: #2d8558;
+  --color-primary-600: #0a5c36;
+  --color-primary-700: #084a2b;
+  --color-primary-800: #063820;
+  --color-primary-900: #042415;
+  --color-primary-950: #02120b;
 
   /* Neutral Colors */
   --color-neutral-50: #f9fafb;
@@ -29,11 +34,19 @@
   --color-neutral-700: #374151;
   --color-neutral-800: #1f2937;
   --color-neutral-900: #111827;
+  --color-neutral-950: #0a0e14;
 
-  /* Accent Colors */
-  --color-accent-light: #fbbf24;
-  --color-accent: #f59e0b;
-  --color-accent-dark: #d97706;
+  /* Accent Colors - Warm gold to complement green */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
 
   /* Status Colors */
   --color-success: #22c55e;
@@ -43,7 +56,7 @@
 
   /* Typography Scale */
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'Fira Code', monospace;
+  --font-family-mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
 
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;
@@ -87,10 +100,22 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
   --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgb(10 92 54 / 0.3);
+  --shadow-glow-lg: 0 0 40px rgb(10 92 54 / 0.4);
 
   /* Hexagon Clip Path Utility */
   --clip-path-hexagon: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+  /* Transitions */
+  --transition-duration-theme: 300ms;
 }
 
 /*
@@ -107,7 +132,18 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%232d5a3d' fill-opacity='0.05'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230a5c36' fill-opacity='0.05'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+}
+
+@utility hexagon-bg-dark {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%234a9e75' fill-opacity='0.08'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
   }
 }
@@ -122,4 +158,12 @@ body {
   background-color: var(--color-neutral-50);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-duration-theme) ease,
+              color var(--transition-duration-theme) ease;
+}
+
+/* Dark mode body overrides */
+.dark body {
+  color: var(--color-neutral-100);
+  background-color: var(--color-neutral-950);
 }
