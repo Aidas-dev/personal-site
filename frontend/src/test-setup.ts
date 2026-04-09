@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 // localStorage polyfill for jsdom
 const localStorageMock = (() => {
@@ -29,4 +30,24 @@ const localStorageMock = (() => {
 Object.defineProperty(globalThis, 'localStorage', {
   value: localStorageMock,
   writable: true,
+});
+
+// matchMedia polyfill for jsdom — returns matches based on query
+const matchMediaMock = vi.fn((query: string) => {
+  const isDark = query.includes('prefers-color-scheme: dark');
+  const isReducedMotion = query.includes('prefers-reduced-motion: reduce');
+  return {
+    matches: isDark, // default to dark mode
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  };
+});
+Object.defineProperty(globalThis, 'matchMedia', {
+  writable: true,
+  value: matchMediaMock,
 });

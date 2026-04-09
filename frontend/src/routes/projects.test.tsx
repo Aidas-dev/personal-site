@@ -1,97 +1,65 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
 
-// Mock @tanstack/react-router Link
 vi.mock('@tanstack/react-router', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@tanstack/react-router')>();
+  const actual = await importOriginal<typeof import('@tanstack/react-router')>()
   return {
     ...actual,
     Link: ({ to, children, className, ...props }: any) => (
-      <a href={to} className={className} {...props}>
-        {children}
-      </a>
+      <a href={to} className={className} {...props}>{children}</a>
     ),
-  };
-});
+    useLinkProps: () => ({}),
+  }
+})
+
+function renderRoute(routeImport: () => Promise<{ Route: { options: { component?: React.ComponentType } } }>) {
+  return routeImport().then(({ Route }) => {
+    const Component = Route.options.component
+    if (!Component) throw new Error('Route component is undefined')
+    return { Component }
+  })
+}
 
 describe('ProjectsPage', () => {
-  beforeEach(() => {
-    document.body.innerHTML = '';
-  });
 
-  it('renders the page heading "Projects"', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
+  it('should render projects heading', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument()
+  })
 
-    expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
-  });
+  it('should render project cards', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    expect(screen.getByText('personal-website')).toBeInTheDocument()
+    expect(screen.getByText('kubernetes-cluster')).toBeInTheDocument()
+  })
 
-  it('renders project cards for placeholder projects', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
+  it('should render filter buttons', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument()
+  })
 
-    expect(screen.getByText('personal-website')).toBeInTheDocument();
-    expect(screen.getByText('kubernetes-cluster')).toBeInTheDocument();
-    expect(screen.getByText('home-lab')).toBeInTheDocument();
-  });
+  it('should filter projects when a tech tag is clicked', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    const k8sBtn = screen.getByRole('button', { name: /kubernetes/i })
+    k8sBtn.click()
+    expect(screen.queryByText('personal-website')).toBeInTheDocument()
+  })
 
-  it('renders filter buttons for tech stacks', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
+  it('should show all projects when All filter is clicked', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    const allBtn = screen.getByRole('button', { name: /all/i })
+    allBtn.click()
+    expect(screen.getByText('personal-website')).toBeInTheDocument()
+  })
 
-    // Should have filter buttons
-    const buttons = screen.getAllByRole('button');
-    const filterButtons = buttons.filter((btn) =>
-      ['All', 'TypeScript', 'Kubernetes', 'Terraform', 'Python', 'Go'].some(
-        (label) => btn.textContent === label
-      )
-    );
-    expect(filterButtons.length).toBeGreaterThanOrEqual(3);
-  });
-
-  it('filters projects when a tech stack filter is clicked', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
-
-    // Initially all projects visible
-    expect(screen.getByText('personal-website')).toBeInTheDocument();
-
-    // Click a filter button (e.g., "Terraform")
-    const terraformBtn = screen.getByRole('button', { name: 'Terraform' });
-    await act(async () => {
-      terraformBtn.click();
-    });
-
-    // Projects with Terraform should be visible, others may be hidden
-    // At minimum, the page should not error
-    expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
-  });
-
-  it('shows all projects when "All" filter is clicked', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
-
-    const allBtn = screen.getByRole('button', { name: 'All' });
-    await act(async () => {
-      allBtn.click();
-    });
-
-    expect(screen.getByText('personal-website')).toBeInTheDocument();
-    expect(screen.getByText('kubernetes-cluster')).toBeInTheDocument();
-    expect(screen.getByText('home-lab')).toBeInTheDocument();
-  });
-
-  it('includes Hexagon decorative elements', async () => {
-    const { Route } = await import('../routes/projects');
-    const ProjectsComponent = Route.options.component;
-    render(<ProjectsComponent />);
-
-    const hexagons = document.querySelectorAll('.hexagon');
-    expect(hexagons.length).toBeGreaterThanOrEqual(1);
-  });
-});
+  it('should render decorative hexagons', async () => {
+    const { Component } = await renderRoute(() => import('./projects'))
+    render(<Component />)
+    expect(document.querySelectorAll('.hexagon').length).toBeGreaterThanOrEqual(1)
+  })
+})

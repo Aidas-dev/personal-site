@@ -70,13 +70,15 @@ interface HeroSceneProps {
   reducedMotion?: boolean
 }
 
+type Position = [number, number, number]
+
 /**
  * JetBrains-style clean 3D hero scene.
  * Simple geometric hexagons floating in space with subtle grid.
  * Adapts to dark/light theme and respects reduced motion preference.
  */
 export function HeroScene({ reducedMotion = false }: HeroSceneProps) {
-  const hexPositions = useMemo(
+  const hexPositions = useMemo<Position[]>(
     () => [
       [-3, 1, -2],
       [2, -1, -3],
@@ -117,7 +119,6 @@ export function HeroScene({ reducedMotion = false }: HeroSceneProps) {
           fadeDistance={20}
           cellColor="#0a5c36"
           sectionColor="#0a5c36"
-          opacity={0.15}
         />
       </Canvas>
     )
@@ -148,7 +149,6 @@ export function HeroScene({ reducedMotion = false }: HeroSceneProps) {
         fadeDistance={20}
         cellColor="#0a5c36"
         sectionColor="#0a5c36"
-        opacity={0.15}
       />
     </Canvas>
   )
