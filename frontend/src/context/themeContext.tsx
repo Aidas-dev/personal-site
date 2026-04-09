@@ -13,10 +13,12 @@ const THEME_STORAGE_KEY = 'theme';
 const DARK_CLASS = 'dark';
 
 function getInitialTheme(): ThemeMode {
-  // Check localStorage first
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  if (stored === 'dark' || stored === 'light') {
-    return stored;
+  // Check localStorage first (only in browser)
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === 'dark' || stored === 'light') {
+      return stored;
+    }
   }
 
   // Fall back to system preference
