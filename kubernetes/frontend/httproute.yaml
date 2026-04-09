@@ -1,14 +1,26 @@
+# =============================================================================
+# Frontend HTTPRoute — Cilium Gateway API
+# =============================================================================
+# Catch-all rule: all non-/api traffic goes to the frontend service.
+#
+# TODO: Replace "aidaskrisciunas.dev" with your actual domain name.
+# Must match the backend HTTPRoute hostname and the Cert-Manager certificate.
+# =============================================================================
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: frontend
   namespace: personal-site
+  labels:
+    app: frontend
+    app.kubernetes.io/name: frontend
+    app.kubernetes.io/part-of: personal-site
 spec:
   parentRefs:
     - name: cilium-gateway-oracle
       namespace: cilium-gateway
   hostnames:
-    - "aidaskrisciunas.dev" # TODO: Replace with actual domain
+    - "aidaskrisciunas.dev" # TODO: Set your actual domain here
   rules:
     - backendRefs:
         - name: frontend

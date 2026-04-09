@@ -1,8 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: backend
+  name: personal-site-backend
   namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: personal-site
+    app.kubernetes.io/component: backend
 spec:
   project: default
   source:

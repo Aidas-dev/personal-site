@@ -1,4 +1,5 @@
 # Personal Site — App of Apps
+# Deploys all child Applications from kubernetes/argocd/apps/
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,6 +7,7 @@ metadata:
   namespace: argocd
   labels:
     app.kubernetes.io/part-of: personal-site
+    app.kubernetes.io/component: app-of-apps
 spec:
   project: default
   source:

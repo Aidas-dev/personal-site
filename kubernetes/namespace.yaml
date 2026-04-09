@@ -4,3 +4,4 @@ metadata:
   name: personal-site
   labels:
     name: personal-site
+    app.kubernetes.io/part-of: personal-site

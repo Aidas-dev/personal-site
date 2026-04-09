@@ -1,14 +1,27 @@
+# =============================================================================
+# Backend HTTPRoute — Cilium Gateway API
+# =============================================================================
+# Routes /api/* traffic to the backend service.
+#
+# TODO: Replace "aidaskrisciunas.dev" with your actual domain name.
+# The TLS certificate is managed by Cert-Manager via a wildcard Certificate
+# resource — ensure the hostname matches the cert's DNS names.
+# =============================================================================
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: backend
   namespace: personal-site
+  labels:
+    app: backend
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/part-of: personal-site
 spec:
   parentRefs:
     - name: cilium-gateway-oracle
       namespace: cilium-gateway
   hostnames:
-    - "aidaskrisciunas.dev" # TODO: Replace with actual domain
+    - "aidaskrisciunas.dev" # TODO: Set your actual domain here
   rules:
     - matches:
         - path:
