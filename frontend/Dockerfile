@@ -26,4 +26,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
 EXPOSE 3000
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["node", "dist/server/index.mjs"]
+CMD ["node", "dist/server/server.js"]
