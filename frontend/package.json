@@ -1,13 +1,13 @@
 {
   "name": "portfolio-frontend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Personal portfolio site frontend built with TanStack Start",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "start": "node dist/server/index.mjs",
+    "start": "node dist/server/server.js",
     "preview": "vite preview",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
