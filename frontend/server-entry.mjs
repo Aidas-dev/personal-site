@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { server } from './dist/server/server.js';
+import server from './dist/server/server.js';
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
 const host = process.env.HOST || '0.0.0.0';
