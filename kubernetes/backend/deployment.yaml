@@ -26,6 +26,10 @@ spec:
         - name: ghcr-image-pull-secret
       nodeSelector:
         location: oracle-cloud
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname

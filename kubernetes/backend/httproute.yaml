@@ -21,7 +21,7 @@ spec:
     - name: cilium-gateway-oracle
       namespace: cilium-gateway
   hostnames:
-    - "aidaskrisciunas.dev" # TODO: Set your actual domain here
+    - "portfolio.kubexa.tech"
   rules:
     - matches:
         - path:
