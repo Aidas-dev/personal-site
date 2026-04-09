@@ -22,6 +22,10 @@ spec:
   hostnames:
     - "portfolio.kubexa.tech"
   rules:
-    - backendRefs:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
         - name: frontend
           port: 3000
