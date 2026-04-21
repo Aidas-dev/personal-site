@@ -10,3 +10,17 @@ terraform {
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
+
+resource "cloudflare_worker_script" "portfolio_worker" {
+  account_id = var.cloudflare_account_id
+  name       = "personal-portfolio"
+  content    = file("${path.module}/../../src/worker/index.ts") # Placeholder for Phase 2
+
+  module = true
+}
+
+resource "cloudflare_worker_route" "portfolio_route" {
+  zone_id     = var.cloudflare_zone_id
+  pattern     = "${var.domain}/*"
+  script_name = cloudflare_worker_script.portfolio_worker.name
+}
