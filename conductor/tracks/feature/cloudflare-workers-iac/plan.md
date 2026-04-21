@@ -13,10 +13,16 @@
 - [x] Configure `wrangler.toml` for local development and compatibility 503b2e3
 
 ## Phase 3: GitHub Actions CI/CD
-- [ ] Create `.github/workflows/terraform.yml`
-- [ ] **TDD**: Add failing CI test for format check
-- [ ] **Green**: Fix formatting to pass CI
-- [ ] **Checkpoint**: PR checks pass in CI
+- [x] Create `.github/workflows/terraform.yml`
+- [x] **TDD**: Add failing CI test for format check
+- [x] **Green**: Fix formatting to pass CI
+- [x] **Checkpoint**: PR checks pass in CI
+
+## Phase 4: Deployment & Handover
+- [ ] Add required GitHub Secrets (`CF_API_TOKEN`, `CF_ZONE_ID`)
+- [ ] **Verify**: DNS propagation via `nslookup portfolio.kubexa.tech`
+- [ ] **Verify**: `curl https://portfolio.kubexa.tech` returns "Hello World"
+- [ ] Push feature branch and open PR
 - [ ] **Green**: Implement "Hello World" to pass test
 - [ ] Configure `wrangler.toml` for local development and compatibility
 - [ ] **Checkpoint**: `pnpm test` passes with >80% coverage

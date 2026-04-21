@@ -15,8 +15,7 @@ resource "cloudflare_workers_script" "portfolio_worker" {
   account_id = var.cloudflare_account_id
   name       = "personal-portfolio"
   content    = file("${path.module}/../../src/worker/index.ts") # Placeholder for Phase 2
-
-  module = true
+  module     = true
 }
 
 resource "cloudflare_workers_route" "portfolio_route" {
