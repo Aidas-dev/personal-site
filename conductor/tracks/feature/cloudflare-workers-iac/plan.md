@@ -13,28 +13,26 @@
 - [x] Configure `wrangler.toml` for local development and compatibility 503b2e3
 
 ## Phase 3: GitHub Actions CI/CD
-- [x] Create `.github/workflows/terraform.yml`
+- [x] Create `.github/workflows/terraform.yml` (with action version fixes) ee567a2
 - [x] **TDD**: Add failing CI test for format check
 - [x] **Green**: Fix formatting to pass CI
-- [x] **Checkpoint**: PR checks pass in CI
+- [x] **Checkpoint**: PR checks pass in CI (re-triggered after @v4 fix)
 
 ## Phase 4: Deployment & Handover
-- [ ] Add required GitHub Secrets (`CF_API_TOKEN`, `CF_ZONE_ID`)
+- [x] Add required GitHub Secrets (`CF_API_TOKEN` added, `CF_ZONE_ID` added)
 - [ ] **Verify**: DNS propagation via `nslookup portfolio.kubexa.tech`
 - [ ] **Verify**: `curl https://portfolio.kubexa.tech` returns "Hello World"
 - [ ] Push feature branch and open PR
-- [ ] **Green**: Implement "Hello World" to pass test
-- [ ] Configure `wrangler.toml` for local development and compatibility
-- [ ] **Checkpoint**: `pnpm test` passes with >80% coverage
+- [ ] **Checkpoint**: Live deployment passes smoke test
 
-## Phase 3: CI/CD Pipeline
-- [ ] Create GitHub Actions workflow for Terraform Dev environment
-- [ ] Create GitHub Actions workflow for Terraform Prod environment
-- [ ] Configure GitHub Secrets for Cloudflare authentication
-- [ ] **Checkpoint**: Successful 'dry-run' of CI/CD pipeline on PR
+## Verification Commands
+```bash
+# DNS check
+nslookup portfolio.kubexa.tech
 
-## Phase 4: Verification & Handover
-- [ ] Verify deployment on `portfolio.kubexa.tech` via browser
-- [ ] **TDD**: Write failing Playwright test for live domain
-- [ ] **Green**: Verify live domain passes E2E tests
-- [ ] Checkpoint and finalize track
+# Smoke test
+curl -s https://portfolio.kubexa.tech
+
+# Local dev
+cd src/worker && pnpm dev
+```
