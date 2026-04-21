@@ -45,8 +45,6 @@ jobs:
 
       - name: Plan Terraform
         working-directory: infrastructure/cloudflare-workers
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var "cloudflare_account_id=${{ vars.CF_ACCOUNT_ID }}" -var "cloudflare_zone_id=${{ vars.CF_ZONE_ID }}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          TF_VAR_cloudflare_account_id: ${{ vars.CF_ACCOUNT_ID }}
-          TF_VAR_cloudflare_zone_id: ${{ vars.CF_ZONE_ID }}

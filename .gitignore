@@ -25,7 +25,11 @@ Thumbs.db
 # Logs
 *.log
 
-# Terraform (if used later)
+# Terraform
 *.tfstate
 *.tfstate.backup
+*.tfstate.*
 .terraform/
+.terraform.lock.hcl
+# Terraform plan output (sensitive)
+*.tfplan
