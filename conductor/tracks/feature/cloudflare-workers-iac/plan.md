@@ -2,8 +2,8 @@
 
 ## Phase 1: Infrastructure Scaffolding
 - [x] Initialize Terraform project structure (main.tf, variables.tf, outputs.tf) b2369b2
-- [~] Configure Cloudflare Provider and backend
-- [ ] Define Worker Script and Domain Route resources
+- [x] Configure Cloudflare Provider and backend b510569
+- [~] Define Worker Script and Domain Route resources
 - [ ] **Checkpoint**: `terraform validate` and `terraform plan` succeed without errors
 
 ## Phase 2: Worker Application Development (TDD)
