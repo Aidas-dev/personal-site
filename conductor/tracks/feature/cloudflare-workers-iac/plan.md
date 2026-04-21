@@ -10,7 +10,13 @@
 - [x] Initialize Hono Worker project with pnpm e40bf74
 - [x] **TDD**: Write failing test for "Hello World" endpoint 6f15fdb
 - [x] **Green**: Implement "Hello World" to pass test 6f15fdb
-- [x] Configure `wrangler.toml` for local development and compatibility
+- [x] Configure `wrangler.toml` for local development and compatibility 503b2e3
+
+## Phase 3: GitHub Actions CI/CD
+- [ ] Create `.github/workflows/terraform.yml`
+- [ ] **TDD**: Add failing CI test for format check
+- [ ] **Green**: Fix formatting to pass CI
+- [ ] **Checkpoint**: PR checks pass in CI
 - [ ] **Green**: Implement "Hello World" to pass test
 - [ ] Configure `wrangler.toml` for local development and compatibility
 - [ ] **Checkpoint**: `pnpm test` passes with >80% coverage
