@@ -1,0 +1,56 @@
+name: Terraform CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "infrastructure/**"
+      - ".github/workflows/terraform.yml"
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@3
+        with:
+          terraform_version: 1.11.3
+          terraform_wrapper: true
+
+      - name: Setup Terraform Cloudflare
+        uses: cloudflare/setup-tflo@1
+        with:
+          api-token: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Init Terraform
+        working-directory: infrastructure/cloudflare-workers
+        run: terraform init
+
+      - name: Validate Terraform
+        working-directory: infrastructure/cloudflare-workers
+        run: terraform validate
+
+      - name: Check Formatting
+        working-directory: infrastructure/cloudflare-workers
+        run: |
+          if ! terraform fmt -check -recursive; then
+            echo "::error::Terraform files are not formatted. Run 'terraform fmt -recursive' locally."
+            exit 1
+          fi
+
+      - name: Plan Terraform
+        working-directory: infrastructure/cloudflare-workers
+        run: terraform plan -no-color
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ vars.CF_ZONE_ID }}

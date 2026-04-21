@@ -1,0 +1,40 @@
+# Plan: Cloudflare Workers IaC Deployment
+
+## Phase 1: Infrastructure Scaffolding
+- [x] Initialize Terraform project structure (main.tf, variables.tf, outputs.tf) b2369b2
+- [x] Configure Cloudflare Provider and backend b510569
+- [x] Define Worker Script and Domain Route resources da437d8
+- [x] **Checkpoint**: `terraform validate` and `terraform plan` succeed without errors d67367e
+
+## Phase 2: Worker Application Development (TDD)
+- [x] Initialize Hono Worker project with pnpm e40bf74
+- [x] **TDD**: Write failing test for "Hello World" endpoint 6f15fdb
+- [x] **Green**: Implement "Hello World" to pass test 6f15fdb
+- [x] Configure `wrangler.toml` for local development and compatibility 503b2e3
+
+## Phase 3: GitHub Actions CI/CD
+- [x] Create `.github/workflows/terraform.yml`
+- [x] **TDD**: Add failing CI test for format check
+- [x] **Green**: Fix formatting to pass CI
+- [x] **Checkpoint**: PR checks pass in CI
+
+## Phase 4: Deployment & Handover
+- [ ] Add required GitHub Secrets (`CF_API_TOKEN`, `CF_ZONE_ID`)
+- [ ] **Verify**: DNS propagation via `nslookup portfolio.kubexa.tech`
+- [ ] **Verify**: `curl https://portfolio.kubexa.tech` returns "Hello World"
+- [ ] Push feature branch and open PR
+- [ ] **Green**: Implement "Hello World" to pass test
+- [ ] Configure `wrangler.toml` for local development and compatibility
+- [ ] **Checkpoint**: `pnpm test` passes with >80% coverage
+
+## Phase 3: CI/CD Pipeline
+- [ ] Create GitHub Actions workflow for Terraform Dev environment
+- [ ] Create GitHub Actions workflow for Terraform Prod environment
+- [ ] Configure GitHub Secrets for Cloudflare authentication
+- [ ] **Checkpoint**: Successful 'dry-run' of CI/CD pipeline on PR
+
+## Phase 4: Verification & Handover
+- [ ] Verify deployment on `portfolio.kubexa.tech` via browser
+- [ ] **TDD**: Write failing Playwright test for live domain
+- [ ] **Green**: Verify live domain passes E2E tests
+- [ ] Checkpoint and finalize track
