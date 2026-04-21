@@ -4,7 +4,7 @@
 - [x] Initialize Terraform project structure (main.tf, variables.tf, outputs.tf) b2369b2
 - [x] Configure Cloudflare Provider and backend b510569
 - [x] Define Worker Script and Domain Route resources da437d8
-- [~] **Checkpoint**: `terraform validate` and `terraform plan` succeed without errors
+- [x] **Checkpoint**: `terraform validate` and `terraform plan` succeed without errors d67367e
 
 ## Phase 2: Worker Application Development (TDD)
 - [ ] Initialize Hono Worker project with pnpm
