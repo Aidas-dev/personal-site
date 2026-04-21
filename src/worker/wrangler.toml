@@ -2,5 +2,9 @@ name = "personal-portfolio"
 main = "index.ts"
 compatibility_date = "2026-04-21"
 
+routes = [
+  { pattern = "portfolio.kubexa.tech", zone_name = "kubexa.tech" }
+]
+
 [observability]
 enabled = true

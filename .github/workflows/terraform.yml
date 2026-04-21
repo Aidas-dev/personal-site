@@ -1,31 +1,50 @@
-name: Terraform CI
+name: Deploy Cloudflare Workers
 
 on:
   push:
     branches: [main]
   pull_request:
     paths:
-      - "infrastructure/**"
+      - "src/cf-worker/**"
+      - "infrastructure/cloudflare-workers/**"
       - ".github/workflows/terraform.yml"
 
 jobs:
-  terraform:
-    name: Terraform
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-      id-token: write
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Worker dependencies
+        working-directory: src/cf-worker
+        run: pnpm install
+
+      - name: Deploy Worker via Wrangler
+        working-directory: src/cf-worker
+        run: pnpm deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: 1.11.3
-          terraform_wrapper: true
 
       - name: Init Terraform
         working-directory: infrastructure/cloudflare-workers
@@ -39,10 +58,16 @@ jobs:
         working-directory: infrastructure/cloudflare-workers
         run: |
           if ! terraform fmt -check -recursive; then
-            echo "::error::Terraform files are not formatted. Run 'terraform fmt -recursive' locally."
+            echo "::error::Terraform files are not formatted."
             exit 1
           fi
 
       - name: Plan Terraform
         working-directory: infrastructure/cloudflare-workers
         run: terraform plan -no-color -var "cloudflare_account_id=${{ vars.CF_ACCOUNT_ID }}" -var "cloudflare_zone_id=${{ vars.CF_ZONE_ID }}" -var "cloudflare_api_token=${{ secrets.CF_API_TOKEN }}"
+
+      - name: Apply Terraform
+        working-directory: infrastructure/cloudflare-workers
+        run: terraform apply -auto-approve -var "cloudflare_account_id=${{ vars.CF_ACCOUNT_ID }}" -var "cloudflare_zone_id=${{ vars.CF_ZONE_ID }}" -var "cloudflare_api_token=${{ secrets.CF_API_TOKEN }}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

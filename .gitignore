@@ -33,3 +33,7 @@ Thumbs.db
 .terraform.lock.hcl
 # Terraform plan output (sensitive)
 *.tfplan
+
+# Wrangler
+.wrangler/
+.wrangler.toml
