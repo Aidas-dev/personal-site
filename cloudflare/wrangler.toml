@@ -1,0 +1,13 @@
+name = "portfolio"
+main = "worker.ts"
+compatibility_date = "2026-04-21"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[build]
+command = "cd frontend && pnpm run build"
+
+[assets]
+directory = "frontend/dist/client"
