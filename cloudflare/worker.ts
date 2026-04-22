@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { fetch as frontendFetch } from './frontend/dist/server/server.js'
 
 const app = new Hono()
 
@@ -18,6 +19,10 @@ app.get('/api/metrics', (c) => {
 
 app.get('/api/grafana', (c) => {
   return c.json({ dashboards: [], timestamp: new Date().toISOString() })
+})
+
+app.all('*', async (c) => {
+  return frontendFetch(c.req, c.env, c.executionCtx) as Response
 })
 
 export default app

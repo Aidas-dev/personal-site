@@ -35,6 +35,14 @@ jobs:
         working-directory: cloudflare
         run: pnpm install --frozen-lockfile
 
+      - name: Install frontend dependencies
+        working-directory: cloudflare/frontend
+        run: pnpm install --frozen-lockfile
+
+      - name: Build frontend
+        working-directory: cloudflare/frontend
+        run: pnpm run build
+
       - name: Deploy Worker via Wrangler
         working-directory: cloudflare
         run: pnpm run deploy
