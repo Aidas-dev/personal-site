@@ -29,10 +29,11 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
+          cache-dependency-path: 'cloudflare/pnpm-lock.yaml'
 
-      - name: Install Worker dependencies
+      - name: Install dependencies
         working-directory: cloudflare
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Deploy Worker via Wrangler
         working-directory: cloudflare
