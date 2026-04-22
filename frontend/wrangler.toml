@@ -1,10 +1,8 @@
 name = "portfolio-frontend"
-main = ".output/server/index.mjs"
+main = "@tanstack/react-start/server-entry"
 compatibility_date = "2026-04-21"
 compatibility_flags = ["nodejs_compat"]
 
 [observability]
 enabled = true
 
-[assets]
-directory = ".output/public"
