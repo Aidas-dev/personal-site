@@ -1,5 +1,4 @@
 import { Hono } from 'hono'
-import frontendserver from './frontend/dist/server/server.js'
 
 const app = new Hono()
 
@@ -20,7 +19,5 @@ app.get('/api/metrics', (c) => {
 app.get('/api/grafana', (c) => {
   return c.json({ dashboards: [], timestamp: new Date().toISOString() })
 })
-
-app.route('/', frontendserver as any)
 
 export default app

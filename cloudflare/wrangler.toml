@@ -5,9 +5,3 @@ compatibility_flags = ["nodejs_compat"]
 
 [observability]
 enabled = true
-
-[build]
-command = "cd frontend && pnpm run build"
-
-[assets]
-directory = "frontend/dist/client"
