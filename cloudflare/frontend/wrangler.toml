@@ -1,9 +1,0 @@
-name = "portfolio-frontend"
-main = "dist/server/server.js"
-compatibility_date = "2026-04-21"
-
-[observability]
-enabled = true
-
-[assets]
-directory = "dist/client"
