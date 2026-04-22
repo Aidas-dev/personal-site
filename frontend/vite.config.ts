@@ -16,7 +16,9 @@ export default defineConfig({
   },
   plugins: [
     cloudflare({ viteEnvironment: { name: 'workers' } }),
-    tanstackStart(),
+    tanstackStart({
+      target: 'cloudflare-module',
+    }),
     tailwindcss(),
     viteReact(),
   ],
