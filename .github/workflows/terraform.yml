@@ -74,6 +74,8 @@ jobs:
       - name: Plan Terraform
         working-directory: infrastructure/cloudflare-workers
         run: terraform plan -no-color
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
       - name: Apply Terraform
         working-directory: infrastructure/cloudflare-workers
