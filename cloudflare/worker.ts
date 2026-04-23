@@ -1,20 +1,7 @@
-import { Hono } from 'hono'
-import server from './frontend/dist/server/server.js'
+import handler from './frontend/dist/server/server.js'
 
 export default {
   fetch: (req, env, ctx) => {
-    const app = new Hono()
-    
-    app.get('/api/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }))
-    app.get('/api/metrics', (c) => c.json({
-      nodes: [], pods: [],
-      cluster: { cpu: { used: '0%', total: '' }, memory: { used: '0%', total: '' } },
-      timestamp: new Date().toISOString(),
-      source: 'cloudflare-workers',
-    }))
-    app.get('/api/grafana', (c) => c.json({ dashboards: [], timestamp: new Date().toISOString() }))
-    app.all('*', (c) => server.fetch(c.req, c.env, c.executionCtx))
-    
-    return app.fetch(req, env, ctx)
+    return handler.fetch(req, env, ctx)
   }
 }
