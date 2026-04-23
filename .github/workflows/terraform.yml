@@ -63,6 +63,11 @@ jobs:
         working-directory: infrastructure/cloudflare-workers
         run: terraform validate
 
+      - name: Import existing route
+        working-directory: infrastructure/cloudflare-workers
+        run: |
+          TF_VAR_cloudflare_api_token=${{ secrets.CF_API_TOKEN }} terraform import cloudflare_workers_route.portfolio_route "0dd20ed9493a771ee66c376761ecaefa:portfolio.kubexa.tech/*" 2>/dev/null || true
+
       - name: Check Formatting
         working-directory: infrastructure/cloudflare-workers
         run: |
