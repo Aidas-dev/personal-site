@@ -11,8 +11,5 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
-resource "cloudflare_workers_route" "portfolio_route" {
-  zone_id     = var.cloudflare_zone_id
-  pattern     = "${var.domain}/*"
-  script_name = "portfolio"
-}
+# Route created via wrangler deploy - managed outside Terraform
+# import existing: terraform import cloudflare_workers_route.portfolio_route zone_id:pattern
