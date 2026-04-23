@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  # Uses CLOUDFLARE_API_TOKEN env var automatically
+  api_token = var.cloudflare_api_token
 }
 
 resource "cloudflare_workers_route" "portfolio_route" {

@@ -73,12 +73,12 @@ jobs:
 
       - name: Plan Terraform
         working-directory: infrastructure/cloudflare-workers
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var "cloudflare_api_token=${{ secrets.CF_API_TOKEN }}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
       - name: Apply Terraform
         working-directory: infrastructure/cloudflare-workers
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var "cloudflare_api_token=${{ secrets.CF_API_TOKEN }}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
