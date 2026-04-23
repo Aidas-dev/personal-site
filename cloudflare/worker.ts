@@ -22,7 +22,10 @@ app.get('/api/grafana', (c) => {
 })
 
 app.all('*', async (c) => {
-  return server.fetch(c.req, c.env, c.executionCtx)
+  // TanStack Start expects request + env/context, not Hono's context object
+  return server.fetch(c.req, c.env, {
+    waitUntil: c.executionCtx?.waitUntil.bind(c.executionCtx),
+  })
 })
 
 export default app
