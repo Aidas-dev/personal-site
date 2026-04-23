@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = coalesce(env("CLOUDFLARE_API_TOKEN"), "")
+  # Uses CLOUDFLARE_API_TOKEN env var automatically
 }
 
 resource "cloudflare_workers_route" "portfolio_route" {
