@@ -18,5 +18,3 @@ export default {
     return app.fetch(req, env, ctx)
   }
 }
-
-export default app
