@@ -2,6 +2,16 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Hexagon } from '@/components/ui/Hexagon';
 
 export const Route = createFileRoute('/about')({
+  head: () => ({
+    meta: [
+      { title: 'About Me | Aidas Kriščiūnas' },
+      {
+        name: 'description',
+        content: 'Learn more about Aidas Kriščiūnas, my background in infrastructure, and my technical skills.',
+      },
+      { property: 'og:title', content: 'About Me | Aidas Kriščiūnas' },
+    ],
+  }),
   component: About,
 });
 

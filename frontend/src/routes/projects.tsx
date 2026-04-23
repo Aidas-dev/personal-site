@@ -4,6 +4,16 @@ import { Hexagon } from '@/components/ui/Hexagon';
 import { ProjectCard, type ProjectData } from '@/components/ui/ProjectCard';
 
 export const Route = createFileRoute('/projects')({
+  head: () => ({
+    meta: [
+      { title: 'Projects | Aidas Kriščiūnas' },
+      {
+        name: 'description',
+        content: 'A showcase of my recent work, infrastructure projects, and open-source contributions.',
+      },
+      { property: 'og:title', content: 'Projects | Aidas Kriščiūnas' },
+    ],
+  }),
   component: Projects,
 });
 

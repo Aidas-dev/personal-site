@@ -16,7 +16,27 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Aidas Kriščiūnas — Portfolio' },
+      { title: 'Aidas Kriščiūnas — Infrastructure Engineer & Developer' },
+      {
+        name: 'description',
+        content:
+          'Portfolio of Aidas Kriščiūnas. Infrastructure enthusiast, developer, and Kubernetes builder. Exploring open-source and self-hosted systems.',
+      },
+      { property: 'og:title', content: 'Aidas Kriščiūnas' },
+      {
+        property: 'og:description',
+        content:
+          'Infrastructure enthusiast and developer building reliable systems with Kubernetes, Go, and React.',
+      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://portfolio.kubexa.tech' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Aidas Kriščiūnas' },
+      {
+        name: 'twitter:description',
+        content: 'Infrastructure enthusiast and developer building reliable systems.',
+      },
+      { name: 'theme-color', content: '#052e16' }, // Dark green matching the hexagon theme
     ],
   }),
   component: RootComponent,

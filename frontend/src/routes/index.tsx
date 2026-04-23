@@ -3,6 +3,12 @@ import { HeroSceneLazy } from '../components/three/HeroSceneLazy'
 import { Hexagon } from '../components/ui/Hexagon'
 
 export const Route = createFileRoute('/')({
+  head: () => ({
+    meta: [
+      { title: 'Home | Aidas Kriščiūnas' },
+      { property: 'og:title', content: 'Home | Aidas Kriščiūnas' },
+    ],
+  }),
   component: HomePage,
 })
 

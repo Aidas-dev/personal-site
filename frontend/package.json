@@ -21,8 +21,12 @@
     "@react-three/fiber": "^9.5.0",
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/react-start": "^1.0.0",
+    "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "tailwind-merge": "^3.5.0",
     "three": "^0.183.2"
   },
   "devDependencies": {
