@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import server from './frontend/dist/server/server.js'
 
 export default {
-  fetch: (req: Request, env: Record<string, ctx: ExecutionContext) => {
+  fetch: (req, env, ctx) => {
     const app = new Hono()
     
     app.get('/api/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }))
