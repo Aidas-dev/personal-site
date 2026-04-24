@@ -36,3 +36,28 @@ not_found_handling = "single-page-application"
 ## Maintenance Notes
 - **CI/CD**: The GitHub Actions workflow builds the frontend and then deploys from this directory using Wrangler.
 - **Route Conflicts**: Avoid adding manual API routes (like `src/routes/api.health.ts`) if they conflict with TanStack Start's automatic route generation, as this causes build failures in the production manifest.
+
+## Frontend Code Sharing
+
+The cloudflare frontend shares component code with the main frontend at `/frontend/`. Components are kept as regular file copies—not symlinks—because GitHub Actions doesn't reliably handle symlinks during checkout.
+
+### Why Regular Files, Not Symlinks
+
+GitHub Actions + symlinks don't work reliably because:
+- Checkout action doesn't recreate symlinks from git storage
+- Node/Vite can't resolve imports through symlinked directories
+- Checkout v6 uses `includeIf` directives that fail with symlinks
+
+### Syncing Components
+
+When updating shared components, copy from main frontend:
+
+```bash
+cp -r frontend/src/components/ui cloudflare/frontend/src/components/
+cp -r frontend/src/components/layout cloudflare/frontend/src/components/
+cp -r frontend/src/components/dashboard cloudflare/frontend/src/components/
+cp -r frontend/src/components/hero cloudflare/frontend/src/components/
+cp -r frontend/src/components/three cloudflare/frontend/src/components/
+```
+
+Future: Consider PNPM workspaces to properly share code between projects.
