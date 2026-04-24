@@ -21,13 +21,13 @@ jobs:
 
       - name: Create symlinks
         run: |
-          cd cloudflare/frontend/src/components
+          cd $GITHUB_WORKSPACE/cloudflare/frontend/src/components
           rm -rf ui layout dashboard hero three 2>/dev/null || true
-          ln -s ../../frontend/src/components/ui ui
-          ln -s ../../frontend/src/components/layout layout
-          ln -s ../../frontend/src/components/dashboard dashboard
-          ln -s ../../frontend/src/components/hero hero
-          ln -s ../../frontend/src/components/three three
+          ln -s ../../../frontend/src/components/ui ui
+          ln -s ../../../frontend/src/components/layout layout
+          ln -s ../../../frontend/src/components/dashboard dashboard
+          ln -s ../../../frontend/src/components/hero hero
+          ln -s ../../../frontend/src/components/three three
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
