@@ -17,21 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Create symlinks
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/cloudflare/frontend/src/components
-          rm -f $GITHUB_WORKSPACE/cloudflare/frontend/src/components/ui
-          rm -f $GITHUB_WORKSPACE/cloudflare/frontend/src/components/layout
-          rm -f $GITHUB_WORKSPACE/cloudflare/frontend/src/components/dashboard
-          rm -f $GITHUB_WORKSPACE/cloudflare/frontend/src/components/hero
-          rm -f $GITHUB_WORKSPACE/cloudflare/frontend/src/components/three
-          ln -s $GITHUB_WORKSPACE/frontend/src/components/ui $GITHUB_WORKSPACE/cloudflare/frontend/src/components/ui
-          ln -s $GITHUB_WORKSPACE/frontend/src/components/layout $GITHUB_WORKSPACE/cloudflare/frontend/src/components/layout
-          ln -s $GITHUB_WORKSPACE/frontend/src/components/dashboard $GITHUB_WORKSPACE/cloudflare/frontend/src/components/dashboard
-          ln -s $GITHUB_WORKSPACE/frontend/src/components/hero $GITHUB_WORKSPACE/cloudflare/frontend/src/components/hero
-          ln -s $GITHUB_WORKSPACE/frontend/src/components/three $GITHUB_WORKSPACE/cloudflare/frontend/src/components/three
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
