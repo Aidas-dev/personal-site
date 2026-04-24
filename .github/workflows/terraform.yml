@@ -43,6 +43,10 @@ jobs:
         working-directory: cloudflare/frontend
         run: pnpm install --frozen-lockfile
 
+      - name: Regenerate route tree
+        run: rm -f src/routeTree.gen.ts
+        working-directory: cloudflare/frontend
+
       - name: Build frontend
         working-directory: cloudflare/frontend
         run: pnpm run build
