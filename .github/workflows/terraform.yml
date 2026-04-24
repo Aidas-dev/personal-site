@@ -16,12 +16,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          config: |
-            [core]
-              symlinks = true
+      - name: Clone repository
+        run: |
+          git clone --depth 1 https://github.com/${{ github.repository }}.git .
+          git fetch --unshallow origin HEAD
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
