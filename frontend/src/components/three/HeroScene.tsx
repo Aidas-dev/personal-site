@@ -2,6 +2,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, MeshDistortMaterial, Grid } from '@react-three/drei'
 import { useRef, useMemo } from 'react'
 import { type Group } from 'three'
+import { WaveHexGrid } from './WaveHexGrid'
 
 interface FloatingHexProps {
   position: [number, number, number]
@@ -104,6 +105,7 @@ export function HeroScene({ reducedMotion = false }: HeroSceneProps) {
       >
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={0.8} />
+        <WaveHexGrid reducedMotion />
         {hexPositions.map((pos, i) => (
           <StaticHex
             key={i}
@@ -132,6 +134,7 @@ export function HeroScene({ reducedMotion = false }: HeroSceneProps) {
     >
       <ambientLight intensity={0.4} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
+      <WaveHexGrid />
       {hexPositions.map((pos, i) => (
         <FloatingHex
           key={i}
