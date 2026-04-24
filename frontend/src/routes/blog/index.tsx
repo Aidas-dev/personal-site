@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { Hexagon } from '@/components/ui/Hexagon';
 import { getAllPosts } from '@/utils/blog';

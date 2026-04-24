@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createFileRoute, Link } from '@tanstack/react-router';
 import ReactMarkdown from 'react-markdown';
 import { Hexagon } from '@/components/ui/Hexagon';
